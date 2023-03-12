@@ -13,7 +13,7 @@ function Home({ isAuth }) {
     };
 
     getPosts();
-  }, [deletePost]);
+  });
 
   const deletePost = async (id) => {
     const postDoc = doc(db, "posts", id);
@@ -29,10 +29,10 @@ function Home({ isAuth }) {
                 <h1> {post.title}</h1>
               </div>
               <div className="deletePost">
-                {isAuth && post.author.id === auth.currentUser.uid && (
+                {isAuth && post.author?.id === auth.currentUser.uid && (
                   <button
                     onClick={() => {
-                      deletePost(post.id);
+                      deletePost(post?.id);
                     }}
                   >
                     {" "}
@@ -42,7 +42,7 @@ function Home({ isAuth }) {
               </div>
             </div>
             <div className="postTextContainer"> {post.postText} </div>
-            <h3>@{post.author.name}</h3>
+           
           </div>
         );
       })}
